@@ -1,0 +1,123 @@
+[
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "123-456-7890",
+      "password": "examplepassword1"
+    },
+    {
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "phone": "987-654-3210",
+      "password": "examplepassword2"
+    },
+    {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "phone": "555-123-4567",
+      "password": "examplepassword3"
+    },
+    {
+      "name": "Bob Brown",
+      "email": "bob.brown@example.com",
+      "phone": "555-987-6543",
+      "password": "examplepassword4"
+    },
+    {
+      "name": "Emily Davis",
+      "email": "emily.davis@example.com",
+      "phone": "555-555-5555",
+      "password": "examplepassword5"
+    },
+    {
+      "name": "Michael Wilson",
+      "email": "michael.wilson@example.com",
+      "phone": "555-222-3333",
+      "password": "examplepassword6"
+    },
+    {
+      "name": "Sarah Martinez",
+      "email": "sarah.martinez@example.com",
+      "phone": "555-777-8888",
+      "password": "examplepassword7"
+    },
+    {
+      "name": "David Garcia",
+      "email": "david.garcia@example.com",
+      "phone": "555-999-0000",
+      "password": "examplepassword8"
+    },
+    {
+      "name": "Karen Taylor",
+      "email": "karen.taylor@example.com",
+      "phone": "555-444-5555",
+      "password": "examplepassword9"
+    },
+    {
+      "name": "Christopher Hernandez",
+      "email": "christopher.hernandez@example.com",
+      "phone": "555-666-7777",
+      "password": "examplepassword10"
+    },
+    {
+      "name": "Linda Lopez",
+      "email": "linda.lopez@example.com",
+      "phone": "555-111-2222",
+      "password": "examplepassword11"
+    },
+    {
+      "name": "Joshua Gonzalez",
+      "email": "joshua.gonzalez@example.com",
+      "phone": "555-333-4444",
+      "password": "examplepassword12"
+    },
+    {
+      "name": "Amanda Perez",
+      "email": "amanda.perez@example.com",
+      "phone": "555-888-9999",
+      "password": "examplepassword13"
+    },
+    {
+      "name": "Kevin Rodriguez",
+      "email": "kevin.rodriguez@example.com",
+      "phone": "555-777-1111",
+      "password": "examplepassword14"
+    },
+    {
+      "name": "Patricia Martinez",
+      "email": "patricia.martinez@example.com",
+      "phone": "555-222-4444",
+      "password": "examplepassword15"
+    },
+    {
+      "name": "Jason Smith",
+      "email": "jason.smith@example.com",
+      "phone": "555-555-9999",
+      "password": "examplepassword16"
+    },
+    {
+      "name": "Michelle Brown",
+      "email": "michelle.brown@example.com",
+      "phone": "555-888-2222",
+      "password": "examplepassword17"
+    },
+    {
+      "name": "Daniel Lee",
+      "email": "daniel.lee@example.com",
+      "phone": "555-111-7777",
+      "password": "examplepassword18"
+    },
+    {
+      "name": "Nicole Taylor",
+      "email": "nicole.taylor@example.com",
+      "phone": "555-333-8888",
+      "password": "examplepassword19"
+    },
+    {
+      "name": "Matthew Harris",
+      "email": "matthew.harris@example.com",
+      "phone": "555-999-1111",
+      "password": "examplepassword20"
+    }
+  ]
+  
