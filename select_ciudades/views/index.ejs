@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select ciudad</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <form action="/" method="post">
+        <select name="italia" id="italia">
+            <option>Tu ciudad Italiana</option>
+            <% datos.forEach(ciudad => { %>
+                <option value="<%= ciudad.id %>"><%= ciudad.comune %>, <%= ciudad.s_provincia %></option>
+            <% }) %>
+        </select>
+        <select name="spain" id="spain">
+            <option>Tu ciudad Española</option>
+            <% datosEs.forEach(ciudad => { %>
+                <option value="<%= ciudad.id %>"><%= ciudad.nombre_es %></option>
+            <% }) %>
+        </select>
+    </form>
+</body>
+
+</html>
