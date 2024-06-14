@@ -1,0 +1,29 @@
+main{
+    text-align: center;
+}
+
+h2{
+    margin: .8rem 0;
+}
+
+div.opciones{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+div.opciones a{
+    text-decoration: none;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 400px){
+    div.opciones{
+        width: 100%;
+    }
+}
