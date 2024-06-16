@@ -10,6 +10,8 @@ main.login {
 
 .form-log{
     margin: 0 auto;
+    /* width: 70%; */
+    max-width: 700px;
 }
 
 h3, .campo label{

@@ -3,11 +3,12 @@
 //Importar modulos
 const express = require('express');
 const bcryptjs = require('bcryptjs');
-const routerBack = express.Router();
-
 //Requerir el fichero de conexión a base de datos situado en la carpeta data
 const connection = require('../data/db.js');
 const path = require('path');
+
+//Inicializar routerBack
+const routerBack = express.Router();
 const { log } = require('console');
 
 //Renderizar la ruta principal de gestión de usuarios
