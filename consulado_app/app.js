@@ -25,7 +25,7 @@ app.set('views', './views');
 //utilizar capreta de recursos estaticos
 app.use(express.static('public'));
 //configurar cookie-parser
-//app.use(cookieParser());
+app.use(cookieParser());
 //procesar datos desde formulario
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -34,6 +34,11 @@ app.use(routerBack);
 
 
 /* USUARIOS */
+appUser.use((req, res, next) => {
+    res.locals.previousUrl = req.headers.referer || '/'; 
+    // Valor predeterminado si no hay página anterior
+    next();
+});
 //Definir motor de plantilla
 appUser.set('view engine', 'ejs');
 appUser.set('views', './views');

@@ -13,13 +13,13 @@
 
     <main>
         <div class="log">
-            <h2>Bienvenido Usuario</h2>
+            <h2>Bienvenido <%= user.nombre_res %> <%= user.apellido_res %></h2>
             <a href="#" class="logout">Cerrar Sessión</a>
         </div>
         <div class="opciones">
             <a href="#">Programar cita Certificaciones</a>
             <a href="#">Progamar cita Urgente</a>
-            <a href="#">Mis Datos</a>
+            <a href="user/<%= user.id_residente %>">Mis Datos</a>
         </div>
     </main>
     <%- include('./parcials/footer') %>

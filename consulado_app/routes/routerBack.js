@@ -35,9 +35,9 @@ routerBack.post('/insert', async (req, res) => {
 
     try {
         const { name, apellido, tel, ciudad, email, consulado, dni, finDni, pasaporte, finPsp, password } = req.body;
-        let passHash = await bcryptjs.hash(password, 8);
+        //let passHash = await bcryptjs.hash(password, 8);
         //console.log(passHash);
-        const insert = `INSERT INTO residentes_aire (consulado_pertenencia,nombre_res, apellido_res, telefono_res, ciudad_aire_res, num_dni_res, fin_dni_res, num_pasaporte_res, fin_pasaporte_res, email_res, password_res) VALUES ('${consulado}','${name}','${apellido}','${tel}','${ciudad}','${dni}','${finDni}','${pasaporte}','${finPsp}','${email}','${passHash}');`;
+        const insert = `INSERT INTO residentes_aire (consulado_pertenencia,nombre_res, apellido_res, telefono_res, ciudad_aire_res, num_dni_res, fin_dni_res, num_pasaporte_res, fin_pasaporte_res, email_res, password_res) VALUES ('${consulado}','${name}','${apellido}','${tel}','${ciudad}','${dni}','${finDni}','${pasaporte}','${finPsp}','${email}','${password}');`;
         //Ejecutar la petición
         connection.query(insert, (err, result) => {
             if (err) {
