@@ -92,9 +92,9 @@ routerUser.get('/user/:id', (req, res) => {
     })
 })
 
-/* routerUser.get('/userDates', (req, res) => {
-    res.render('userDates', { error: null, classError: '' });
-}) */
+routerUser.get('/caledario', (req, res) => {
+    res.render('calendarioAuto', { error: null, classError: '' });
+})
 
 
 
