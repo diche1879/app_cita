@@ -75,7 +75,7 @@ function verificaFechas() {
             let dniCaducidad = new Date(residente.fin_dni_res);
             if (tresMesesAntes(dniCaducidad)) {
                 alertMessage.push(`Tu DNI caducará el ${dniCaducidad.toLocaleDateString()}.`);
-                tipoDocumento = 'DNI'; 
+                tipoDocumento = 'DNI';
             }
 
             let PspCaducidad = new Date(residente.fin_pasaporte_res);
@@ -97,40 +97,68 @@ function verificaFechas() {
                     }
                     console.log('Mensaje de alerta actualizado');
 
-                    //Generar cita automaticamente dos meses antes de que se caduque el documento
-                    let fechaCita = new Date();
-                    fechaCita.setMonth(fechaCita.getMonth() + 2);
+                    //Generar hora aleatoria entre 8AM y 14PM
+                    function horaCita() {
+                        const horas = [8, 9, 10, 11, 12, 13, 14];
+                        const hora = horas[Math.floor(Math.random() * horas.length)];
+                        let fechaCita = new Date();
+                        fechaCita.setHours(hora, 0, 0, 0);
+                        return fechaCita;
+                    }
 
-                    //Verificar citas ya almacenadas en las bases de datos
-                    const selectCitas = 'SELECT id_residente, nombre_res, apellido_res, fecha_cita_res, tipo_documento FROM cita_dni_res';
-                    connection.query(selectCitas, (err, results) => {
+                    //Verificar si existe ya una cita para el mismo tramite
+                    function hayCita(id_residente, tipo_documento, callback) {
+                        const verCita = 'SELECT COUNT(*) AS count FROM cita_dni_res WHERE id_residente = ? AND tipo_documento = ?';
+                        connection.query(verCita, [id_residente, tipo_documento], (err, result) => {
+                            if (err) {
+                                console.error('Error al verificar la existencia de citas:', err);
+                                callback(err, false);
+                                return;
+                            }
+                            const count = result[0].count;
+                            callback(null, count > 0);
+                        })
+
+                    }
+                    hayCita(residente.id_residente, tipoDocumento, (err, existe) => {
                         if (err) {
-                            console.error('Error en la consulta a la base de datos:', err);
+                            console.error('Error al verificar la existencia de citas:', err);
                             return;
                         }
-                    })
+                        if (!existe) {
+                            let fechaCita = horaCita();
 
+                            // Calcular dos meses antes de la caducidad del documento
+                            let dosMesesAntesCaducidad = new Date(residente.fin_dni_res); // Utiliza fin_dni_res o fin_pasaporte_res según corresponda
+                            if (tipoDocumento === 'Pasaporte') {
+                                dosMesesAntesCaducidad = new Date(residente.fin_pasaporte_res);
+                            }
+                            dosMesesAntesCaducidad.setMonth(dosMesesAntesCaducidad.getMonth() - 2);
+                            fechaCita.setFullYear(dosMesesAntesCaducidad.getFullYear(), dosMesesAntesCaducidad.getMonth(), dosMesesAntesCaducidad.getDate());
 
-                    //Formatear la fecha de la cita para insertarla en la columna de la base de datos, que es de tipo datetime
-                    const formattedFechaCita = fechaCita.toISOString().slice(0, 19).replace('T', ' ');
+                            // Formatear la fecha de la cita para insertarla en la base de datos
+                            const formattedFechaCita = fechaCita.toISOString().slice(0, 19).replace('T', ' ');
 
-                    //Recuperar datos para el insert
-                    const cita = {
-                        id_residente: residente.id_residente,
-                        nombre_res: residente.nombre_res,
-                        apellido_res: residente.apellido_res,
-                        fecha_cita_res: formattedFechaCita,
-                        tipo_documento: tipoDocumento
-                    };
+                            // Datos para el insert de la cita
+                            const cita = {
+                                id_residente: residente.id_residente,
+                                nombre_res: residente.nombre_res,
+                                apellido_res: residente.apellido_res,
+                                fecha_cita_res: formattedFechaCita,
+                                tipo_documento: tipoDocumento
+                            };
+                            const insertCita = 'INSERT INTO cita_dni_res (id_residente, nombre_res, apellido_res, fecha_cita_res, tipo_documento) VALUES (?, ?, ?, ?, ?)';
+                            connection.query(insertCita, [cita.id_residente, cita.nombre_res, cita.apellido_res, cita.fecha_cita_res, cita.tipo_documento], (err, result) => {
+                                if (err) {
+                                    console.error('Error en la consulta a la base de datos:', err);
+                                    return;
+                                }
+                                console.log('Cita insertada');
+                            })
 
-                    const insertCita = 'INSERT INTO cita_dni_res (id_residente, nombre_res, apellido_res, fecha_cita_res, tipo_documento) VALUES (?, ?, ?, ?, ?)';
-                    connection.query(insertCita, [cita.id_residente, cita.nombre_res, cita.apellido_res, cita.fecha_cita_res, cita.tipo_documento], (err, result) =>{
-                        if (err) {
-                            console.error('Error en insertar cita:', err);
-                            return;
-                        }
-                        console.log('Cita insertada');
-                    })
+                        };
+                    });
+
                 });
             };
 
