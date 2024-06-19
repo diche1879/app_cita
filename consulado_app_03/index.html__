@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulado</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="encabezado">
+            <div class="logo">
+                <img src="img/travelling_2060521.png" alt="">
+                <h1>Nombre App</h1>
+            </div>
+            <div class="navbar">
+                <button class="menu"><img src="img/icons8-menu.svg" alt=""></button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about.html">Acerca de</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="bienvenida">
+            <h2>Bienvenidos a la app de cita del consulado Italiano</h2>
+        </div>
+    </header>
+    <main></main>
+    <footer>
+        <div class="footer">
+            <div class="foot-logo">
+                <img src="img/travelling_2060521.png" alt="">
+                <h3>Nombre App</h3>
+            </div>
+            <div class="foot-navbar">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about.html">Acerca de</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="legal">
+            <a href="#">Cookies</a>
+            <a href="#">Avisos legales</a>
+            <a href="#">Privacidad</a>
+        </div>
+        <div class="copyright">
+            <p>Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+
+</html>
