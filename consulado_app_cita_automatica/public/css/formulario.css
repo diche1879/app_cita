@@ -1,0 +1,96 @@
+h2{
+    text-align: center;
+    margin: .8rem;
+    margin-bottom: 2rem;
+}
+
+p.error{
+    margin: 0 auto;
+    max-width: 700px;
+    text-align: center;
+    border: 2px solid red;
+    color: red;
+    padding: .8rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+main.login {
+    margin: 0 auto;
+}
+
+.form-log{
+    margin: 0 auto;
+    /* width: 70%; */
+    max-width: 700px;
+}
+
+h3, .campo label{
+    margin-left: 1rem;
+}
+
+fieldset{
+    padding: 2rem;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(237, 237, 237);
+}
+
+div.campo{
+    display: flex;
+    flex-direction: column;
+}
+
+div.campo input{
+    width: 100%;
+    padding:.5rem;
+    margin-top: .2rem;
+    margin-bottom: .8rem;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+}
+
+button.session{
+    width: 100%;
+    padding: .5rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.campo a, .info a{
+    align-self: end;
+    color: rgb(148, 148, 148);
+}
+.campo  a:hover, .info a:hover{
+    color: rgb(34, 34, 34);
+}
+
+.info{
+    padding: 1rem;
+    background-color: rgb(237, 237, 237);
+    border-radius: 10px;
+    margin: 3rem 0;
+}
+
+a.volver{
+    align-items: center;
+    padding: .5rem;
+    color: rgb(83, 83, 83);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1rem;
+    text-decoration: none;
+}
+
+i{
+    font-size: 2rem;
+    margin-right: 1rem;
+}
