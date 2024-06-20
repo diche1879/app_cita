@@ -1,0 +1,27 @@
+<div class="logo">
+    <img class="mundo" src="/img/travelling_2060521.png" alt="logo avion sobre globo terrestre">
+    <h1>SmartDate</h1>
+</div>
+<button id="abrir" class="abrir-menu"><img src="/img/round-account-button-with-user-inside_icon-icons.com_72596.svg" alt=""><span><%= span %></span></button>
+<nav class="nav" id="nav">
+    <button id="cerrar" class="cerrar-menu"><i class="bi bi-x-lg"></i></button>
+    <ul class="nav-list">
+        <li><button onclick="window.modal1.showModal();"><%= button %></button></li>
+        <!--<li><a href="#">hola</a></li>
+         <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Contacto</a></li> -->
+    </ul>
+</nav>
+
+<dialog id="modal1">
+    <div class="cuerpo-msg">
+        <div class="message">
+            <h2>Tus mensajes</h2>
+            <p>no hay mensajes</p>
+        </div>
+        <div class="btn"><button class="cerrar-d" onclick="window.modal1.close();">Cerrar</button></div>
+        
+        
+    </div>
+</dialog>
