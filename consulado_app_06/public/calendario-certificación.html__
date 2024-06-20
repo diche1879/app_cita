@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulado</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3/dist/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendario-certificaciones.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img class="mundo" src="img/travelling_2060521.png" alt="logo avion sobre globo terrestre">
+            <h1>SmartDate</h1>
+        </div>
+        <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
+        <nav class="nav" id="nav">
+            <button id="cerrar" class="cerrar-menu"><i class="bi bi-x-lg"></i></button>
+            <ul class="nav-list">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Calendario Citas</h2>
+        <div class="cale">
+            <section>
+                <h2>Días disponibles</h2>
+                <p>Elige el día entre los de la lista:</p>
+                <form method="post" id="inputContainer"></form>
+            </section>
+            <section>
+                <h2>Horarios disponibles</h2>
+                <p>Elige el día entre los de la lista:</p>
+                <form class="horas" method="post" id="hourInputsContainer"></form>
+            </section>
+        </div>
+        <a href="#" class="volver"><i class="bi bi-arrow-left-circle-fill"></i>Volver</a>
+    </main>
+    <footer>
+        <div class="logo">
+            <img class="mundo-f" src="img/travelling_2060521.png" alt="logo avion sobre globo terrestre">
+            <h3>SmartDate</h3>
+        </div>
+        <div class="legal">
+            <a href="#">Cokies</a>
+            <a href="#">Avisos Legales</a>
+            <a href="#">Privacidad</a>
+        </div>
+    </footer>
+    <script src="js/myapp.js"></script>
+    <script src="js/app_dia_hora.js"></script>
+</body>
+
+</html>

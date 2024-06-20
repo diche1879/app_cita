@@ -1,0 +1,56 @@
+<div class="logo">
+    <img class="mundo" src="/img/travelling_2060521.png" alt="logo avion sobre globo terrestre">
+    <h1>SmartDate</h1>
+</div>
+<button id="abrir" class="abrir-menu"><img src="/img/round-account-button-with-user-inside_icon-icons.com_72596.svg"
+        alt=""><span>
+        <%= span %>
+    </span></button>
+<nav class="nav" id="nav">
+    <button id="cerrar" class="cerrar-menu"><i class="bi bi-x-lg"></i></button>
+    <ul class="nav-list">
+        <li><button onclick="window.modal1.showModal();">
+                <%= button %>
+            </button></li>
+        <!-- <li><a href="#">hola</a></li> -->
+    </ul>
+</nav>
+
+<dialog id="modal1">
+    <div class="cuerpo-msg">
+        <div class="message">
+            <h2>Tus mensajes</h2>
+            <p>
+                <%= mensaje %>
+            </p>
+            <button class="cita" onclick="window.modal2.showModal();">Propuesta de cita</button>
+            <dialog id="modal2">
+                <div class="cuerpo-msg">
+                    <div class="message">
+                        <h2>Propuesta de cita</h2>
+                        <p>Tienes una cita reservada para el:</p>
+                        <form action="#" method="post">
+                            <input type="hidden" value="">
+                            <input class="proposta" type="text" value="" placeholder="fecha cita" readonly>
+                            <div class="adevertencias">
+                                <h3>¡IMPORTANTE!</h3>
+                            <p>Dale a confirmar para que la cita se agende correctamente.</p>
+                            <p>Si rechazas la cita no podremos garantizar una fecha que se adapte a la fecha de caducidad de tu documento.</p>
+                            </div>
+                            
+                            <div class="btn-cita">
+                                <button type="submit">confirmar</button>
+                                <button type="submit">rechazar</button>
+                            </div>
+
+                        </form>
+                        <button class="cerrar-d" onclick="window.modal2.close();">Cerrar</button>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+        <div class="btn"><button class="cerrar-d" onclick="window.modal1.close();">Cerrar</button></div>
+
+
+    </div>
+</dialog>
