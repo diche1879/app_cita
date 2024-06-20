@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-06-2024 a las 11:09:05
+-- Tiempo de generación: 20-06-2024 a las 11:59:02
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,9 +32,19 @@ USE `consulado`;
 CREATE TABLE `cita_dni_res` (
   `id_cita_res` int(10) NOT NULL,
   `id_residente` int(6) NOT NULL,
-  `fecha_cita_res` date NOT NULL,
-  `hora_cita_res` varchar(5) NOT NULL
+  `nombre_res` varchar(25) NOT NULL,
+  `apellido_res` varchar(25) NOT NULL,
+  `fecha_cita_res` datetime NOT NULL,
+  `tipo_documento` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cita_dni_res`
+--
+
+INSERT INTO `cita_dni_res` (`id_cita_res`, `id_residente`, `nombre_res`, `apellido_res`, `fecha_cita_res`, `tipo_documento`) VALUES
+(87, 3, 'Teofilo', 'Patini', '2024-07-15 09:00:00', 'DNI'),
+(88, 4, 'Oscar', 'Wilde', '2024-07-15 07:00:00', 'DNI');
 
 -- --------------------------------------------------------
 
@@ -51,20 +61,6 @@ CREATE TABLE `cita_urgente` (
   `n_denuncia` varchar(15) NOT NULL,
   `id_no_res` int(10) NOT NULL,
   `id_residente` int(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `dni_res`
---
-
-CREATE TABLE `dni_res` (
-  `id_dni_res` int(6) NOT NULL,
-  `id_residente` int(6) NOT NULL,
-  `fin_dni_res` date NOT NULL,
-  `inicio_dni_res` date NOT NULL,
-  `num_dni_res` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -88,38 +84,32 @@ CREATE TABLE `no_residentes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pasaporte_res`
---
-
-CREATE TABLE `pasaporte_res` (
-  `id_pasaporte` int(6) NOT NULL,
-  `num_pasaporte_res` varchar(9) NOT NULL,
-  `em_pasaporte_res` date NOT NULL,
-  `cad_pasaporte_res` date NOT NULL,
-  `Id_residente` int(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `residentes_aire`
 --
 
 CREATE TABLE `residentes_aire` (
-  `Id_residente` int(6) NOT NULL,
+  `id_residente` int(6) NOT NULL,
   `consulado_pertenencia` varchar(20) NOT NULL,
   `nombre_res` varchar(25) NOT NULL,
   `apellido_res` varchar(25) NOT NULL,
   `telefono_res` varchar(15) NOT NULL,
-  `direccion_res` varchar(20) NOT NULL,
   `ciudad_aire_res` varchar(25) NOT NULL,
   `num_dni_res` varchar(9) NOT NULL,
   `fin_dni_res` date NOT NULL,
   `num_pasaporte_res` varchar(9) NOT NULL,
-  `fin_pasaporte_res` varchar(9) NOT NULL,
+  `fin_pasaporte_res` date NOT NULL,
   `email_res` varchar(15) NOT NULL,
-  `password_res` varchar(10) NOT NULL
+  `password_res` varchar(10) NOT NULL,
+  `alerta` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `residentes_aire`
+--
+
+INSERT INTO `residentes_aire` (`id_residente`, `consulado_pertenencia`, `nombre_res`, `apellido_res`, `telefono_res`, `ciudad_aire_res`, `num_dni_res`, `fin_dni_res`, `num_pasaporte_res`, `fin_pasaporte_res`, `email_res`, `password_res`, `alerta`) VALUES
+(3, 'Barcelona', 'Teofilo', 'Patini', '342561780', 'Barcelona', 't3452718p', '2024-09-15', 'E23456789', '2024-12-15', 'teo@gmail.com', '1234', 'Tu DNI caducará el 15/9/2024.'),
+(4, 'Barcelona', 'Oscar', 'Wilde', '454647857', 'Tarragona', 'E7654321A', '2024-09-15', 'E7654321A', '2024-11-20', 'wilde@gmail.com', '5678', 'Tu DNI caducará el 15/9/2024.');
 
 --
 -- Índices para tablas volcadas
@@ -138,28 +128,16 @@ ALTER TABLE `cita_urgente`
   ADD PRIMARY KEY (`id_cita urgente`);
 
 --
--- Indices de la tabla `dni_res`
---
-ALTER TABLE `dni_res`
-  ADD PRIMARY KEY (`id_dni_res`);
-
---
 -- Indices de la tabla `no_residentes`
 --
 ALTER TABLE `no_residentes`
   ADD PRIMARY KEY (`id_no_res`);
 
 --
--- Indices de la tabla `pasaporte_res`
---
-ALTER TABLE `pasaporte_res`
-  ADD PRIMARY KEY (`id_pasaporte`);
-
---
 -- Indices de la tabla `residentes_aire`
 --
 ALTER TABLE `residentes_aire`
-  ADD PRIMARY KEY (`Id_residente`);
+  ADD PRIMARY KEY (`id_residente`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -169,7 +147,7 @@ ALTER TABLE `residentes_aire`
 -- AUTO_INCREMENT de la tabla `cita_dni_res`
 --
 ALTER TABLE `cita_dni_res`
-  MODIFY `id_cita_res` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cita_res` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de la tabla `cita_urgente`
@@ -178,28 +156,16 @@ ALTER TABLE `cita_urgente`
   MODIFY `id_cita urgente` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `dni_res`
---
-ALTER TABLE `dni_res`
-  MODIFY `id_dni_res` int(6) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `no_residentes`
 --
 ALTER TABLE `no_residentes`
   MODIFY `id_no_res` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pasaporte_res`
---
-ALTER TABLE `pasaporte_res`
-  MODIFY `id_pasaporte` int(6) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `residentes_aire`
 --
 ALTER TABLE `residentes_aire`
-  MODIFY `Id_residente` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_residente` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -14,12 +14,12 @@ const routerUser = express.Router();
 
 /* RUTA PRINCIAL */
 routerUser.get('/', (req, res) => {
-    res.render('indexUser',{span:'perfil', button:''});
+    res.render('indexUser',{span:'perfil', button:'', mensaje:''});
 })
 
 /* ACCESO AL LOGIN */
 routerUser.get('/loginRes', (req, res) => {
-    res.render('loginRes', { error: null, classError: '',span:'perfil', button:'' });
+    res.render('loginRes', { error: null, classError: '',span:'perfil', button:'' , mensaje:''});
 })
 
 /* LOGIN DE USUARIO */
@@ -31,19 +31,19 @@ routerUser.post('/loginRes', (req, res) => {
 
     //Si no se proporcionan el mail o la contraseña devolver un mensaje de error
     if (!email || !password) {
-        return res.render('loginRes', { error: 'Todos los campos son obligatorios', classError: 'error' });
+        return res.render('loginRes', { error: 'Todos los campos son obligatorios', classError: 'error' , mensaje:''});
     }
 
     //Si se proporciona todo verificar si existe el usuario
     connection.query('SELECT * FROM residentes_aire WHERE email_res = ?', [email], async (err, result) => {
         if (err) {
             console.error('Error en la consulta a la base de datos:', err);
-            return res.status(500).render('loginRes', { error: 'Error en el servidor', classError: 'error', span:'perfil', button:''});
+            return res.status(500).render('loginRes', { error: 'Error en el servidor', classError: 'error', span:'perfil', button:'', mensaje:''});
         }
         //si no existe devolver un mensaje de usuario no encontrado
         if (result.length === 0) {
             //console.log("Usuario no encontrado");
-            return res.render('loginRes', { error: 'Usuario o contraseña incorrectos', classError: 'error', span:'perfil', button:'' });
+            return res.render('loginRes', { error: 'Usuario o contraseña incorrectos', classError: 'error', span:'perfil', button:'', mensaje:'' });
         }
         //Guardar el primer usuario encontrado en una variable
         const user = result[0];
@@ -52,7 +52,7 @@ routerUser.post('/loginRes', (req, res) => {
         // Comparar la contraseña proporcionada con la almacenada en la base de datos
         if (password !== user.password_res) {
             console.log("Contraseña incorrecta");
-            return res.render('loginRes', { error: 'Usuario o contraseña incorrectos', classError: 'error', span:'perfil', button:''});
+            return res.render('loginRes', { error: 'Usuario o contraseña incorrectos', classError: 'error', span:'perfil', button:'', mensaje:user.alerta});
         }
 
         // Si las credenciales son válidas, generar token JWT y configurar las caracteristicas
@@ -68,7 +68,7 @@ routerUser.post('/loginRes', (req, res) => {
         res.cookie('jwt', token, cookiesOptions);
 
         // acceder a la página inicial del perfil de usuario
-        res.render('mainUserAire', { user, span:user.nombre_res, button:'Mensajes' });
+        res.render('mainUserAire', { user, span:user.nombre_res, button:'Mensajes', mensaje:user.alerta });
 
     });
 });
@@ -88,7 +88,7 @@ routerUser.get('/user/:id', (req, res) => {
         }
         const user = result[0];
         console.log("Usuario encontrado:", user);
-        res.render('userDates', { user, span:user.nombre_res, button:'Mensajes' });
+        res.render('userDates', { user, span:user.nombre_res, button:'Mensajes', mensaje:user.alerta});
     })
 })
 
@@ -107,7 +107,7 @@ routerUser.get('/calendario/:id', (req, res) => {
         }
         const user = result[0];
         console.log("Usuario encontrado:", user);
-        res.render('calendarioAuto', {user, span:user.nombre_res, button:'Mensajes'  });
+        res.render('calendarioAuto', {user, span:user.nombre_res, button:'Mensajes', mensaje:user.alerta});
     })
     
 })
