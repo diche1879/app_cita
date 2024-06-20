@@ -57,7 +57,7 @@ appUser.use(express.json());
 appUser.use(routerUser);
 
 /* FUNCIÓN PARA VERIFICAR LAS FECHAS DE CADUCIDADS Y ACTUALIZAR EL MENSAJE DE ALERTA */
-verificaFechas();
+//verificaFechas();
 
 
 /* PROGRAMAR LA VERIFICACIÓN CADA DÍA A LAS 6:00 CON CRON*/

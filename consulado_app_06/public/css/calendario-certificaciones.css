@@ -2,7 +2,27 @@
 
 main{
     align-self: center;
-    
+    width: 80%;
+}
+
+.log{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.log a{
+    text-decoration: none;
+    background-color: rgb(110, 110, 110);
+    color: white;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.log a:hover{
+    background-color: rgb(65, 65, 65);
 }
 
 div.cale{

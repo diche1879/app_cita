@@ -162,7 +162,7 @@ div.message button{
     color: white;
 }
 
-.btn,
+/* .btn,
 .btn button {
     width: 100%;
     font-size: 1.2rem;
@@ -170,7 +170,7 @@ div.message button{
     border-radius: 5px;
     background-color: rgb(39, 39, 39);
     color: white;
-}
+} */
 
 .proposta{
     width: 80%;
@@ -193,17 +193,31 @@ div.message button{
     margin: .4rem 0;
 }
 
-.btn-cita{
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    gap: 1rem;
+ul {
+    list-style: none;
 }
-/* .btn-cita button{
-    width: 35%;
-} */
+
+/* Estilo de los elementos de la lista */
+ul li {
+    margin-bottom: 1.2rem;
+    width: 100%;
+}
+
+ul li form button{
+    width: 45%;
+}
+
+/* Estilo del texto de la cita */
+ul li p.hora-cita {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0 0 2rem 0;
+}
+
+.cita-auto{
+    margin-bottom: 1rem;
+}
+
 
 /* main */
 main {
