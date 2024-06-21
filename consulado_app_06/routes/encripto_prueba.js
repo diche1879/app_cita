@@ -59,3 +59,41 @@
 /* routerUser.get('/main', (req, res) => {
     res.render('mainUserAire');
 }) */
+
+
+    /* function redirectToMainUserAire(res, userId) {
+    connection.query('SELECT * FROM residentes_aire WHERE id_residente = ?', [userId], (err, userResult) => {
+        if (err) {
+            console.error('Error en la consulta a la base de datos:', err);
+            return res.status(500).send('Error en el servidor');
+        }
+
+        if (userResult.length === 0) {
+            console.log("Usuario no encontrado");
+            return res.status(404).send('Usuario no encontrado');
+        }
+
+        const user = userResult[0];
+
+        connection.query('SELECT * FROM cita_dni_res WHERE id_residente = ?', [userId], (err, citasResult) => {
+            if (err) {
+                console.error('Error al obtener las citas del usuario:', err);
+                return res.status(500).send('Error en el servidor');
+            }
+
+            const citas = citasResult;
+
+            // Renderizar la página principal del usuario con los datos actualizados
+            res.render('mainUserAire', { user, span: user.nombre_res, button: 'Mensajes', mensaje: user.alerta, citas: citas });
+        });
+    });
+} */
+/*  function redirectToPreviousPage(req, res) {
+     const referer = req.headers.referer;
+     if (referer) {
+         res.redirect(referer);
+     } else {
+         // Si no hay Referer, redirige a una página por defecto
+         res.redirect('/'); // Puedes ajustar esta URL según tu aplicación
+     }
+ } */

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('./parcials/head') %>
+        <link rel="stylesheet" href="/css/datos-usuario.css">
+</head>
+
+<body>
+    <header>
+        <%- include('./parcials/header') %>
+    </header>
+
+    <main>
+        <div class="log">
+            <h2>Bienvenido <%= user.nombre_res %>
+                    <%= user.apellido_res %>
+            </h2>
+            <a href="/logout" class="logout">Cerrar Sessión</a>
+        </div>
+        <h2>Modificar Datos</h2>
+        <section>
+            <div>
+                <p>Podras actualizar tu número de teléfono y enviar una petición para que modifiquemos tu nueva
+                    dirección</p>
+            </div>
+            <form action="" method="post">
+                <fieldset>
+                    <legend>Modificar número teléfonico</legend>
+                        <div>
+                            <label for=""></label>
+                            <input type="text">
+                        </div>
+                    
+                </fieldset>
+            </form>
+            <form action="" method>
+                <fieldset>
+                    <p>Para poder actuar el cambio de dirección deberás adjuntar una copia de tu padrón municipal actualizado</p>
+                    <legend>Enviar petición pra cambio de dirección</legend>
+                    <div>
+                        <label for=""></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for=""></label>
+                        <input type="file">
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+        <a href="#" class="volver"><i class="bi bi-arrow-left-circle-fill"></i>Volver</a>
+    </main>
+
+    <%- include('./parcials/footer') %>
+</body>
+
+</html>

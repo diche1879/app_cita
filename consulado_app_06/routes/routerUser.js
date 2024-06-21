@@ -52,17 +52,19 @@ routerUser.post('/loginRes', (req, res) => {
         // Comparar la contraseña proporcionada con la almacenada en la base de datos
         if (password !== user.password_res) {
             console.log("Contraseña incorrecta");
+            //Notificar error
             return res.render('loginRes', { error: 'Usuario o contraseña incorrectos', classError: 'error', span: 'perfil', button: '', mensaje: '', citas: '' });
         }
 
-        //Realizar una segunda consulta para ver si el usuario tiene cita agendandas o para confirmar  
+        //Realizar una segunda consulta para ver si el usuario tiene cita agendandas o a confirmar  
         connection.query('SELECT * FROM cita_dni_res WHERE id_residente = ? ', [user.id_residente], (err, citaResult) => {
             if (err) {
                 console.error('Error en la consulta a la base de datos:', err);
-                /* return res.status(500).render('loginRes', { error: 'Error en el servidor', classError: 'error', span: 'perfil', button: '', mensaje: '' }); */
+                return res.status(500).render('loginRes', { error: 'Error en el servidor', classError: 'error', span: 'perfil', button: '', mensaje: '' });
             }
+            //Guardar las citas en una constante
             const citas = citaResult;
-            console.log("CITAS", citas);
+            //console.log("CITAS", citas);
 
             // Si las credenciales son válidas, generar token JWT y configurar las caracteristicas
             const idUser = user.id_residente;
@@ -82,44 +84,10 @@ routerUser.post('/loginRes', (req, res) => {
     });
 });
 
-/* function redirectToMainUserAire(res, userId) {
-    connection.query('SELECT * FROM residentes_aire WHERE id_residente = ?', [userId], (err, userResult) => {
-        if (err) {
-            console.error('Error en la consulta a la base de datos:', err);
-            return res.status(500).send('Error en el servidor');
-        }
 
-        if (userResult.length === 0) {
-            console.log("Usuario no encontrado");
-            return res.status(404).send('Usuario no encontrado');
-        }
-
-        const user = userResult[0];
-
-        connection.query('SELECT * FROM cita_dni_res WHERE id_residente = ?', [userId], (err, citasResult) => {
-            if (err) {
-                console.error('Error al obtener las citas del usuario:', err);
-                return res.status(500).send('Error en el servidor');
-            }
-
-            const citas = citasResult;
-
-            // Renderizar la página principal del usuario con los datos actualizados
-            res.render('mainUserAire', { user, span: user.nombre_res, button: 'Mensajes', mensaje: user.alerta, citas: citas });
-        });
-    });
-} */
-/*  function redirectToPreviousPage(req, res) {
-     const referer = req.headers.referer;
-     if (referer) {
-         res.redirect(referer);
-     } else {
-         // Si no hay Referer, redirige a una página por defecto
-         res.redirect('/'); // Puedes ajustar esta URL según tu aplicación
-     }
- } */
 /* RUTA ACEPTAR CITA AUTOMATIZADA */
 routerUser.post('/aceptarCita/:id', (req, res) => {
+    //recuperar el id de la cita desde el parametro de la url y el id de usuario desde el formulario
     const idCita = req.params.id;
     const userId = req.body.user_id;
 
@@ -152,7 +120,7 @@ routerUser.post('/rechazarCita/:id', (req, res) => {
     });
 });
 
-//Función que busca cita de usuarios a la base de datos
+//Función que busca cita de usuarios a la base de datos para luego poder utilizarla en las otras rutas
 function buscarCitasUsuario(userId, callback) {
     const selectCitas = 'SELECT * FROM cita_dni_res WHERE id_residente = ?';
     connection.query(selectCitas, [userId], (err, citasResult) => {
@@ -173,19 +141,19 @@ routerUser.get('/user/:id', (req, res) => {
     buscarCitasUsuario(userId, (err, citasResult) => {
         if (err) {
             console.error('Error al buscar las citas del usuario:', err);
-            return res.status(500).render('loginRes', { error: 'Error en el servidor', classError: 'error' });
+            return res.status(500).send('Error en el servidor');
         }
 
         const selectUser = `SELECT * FROM residentes_aire WHERE id_residente = ${userId}`;
         connection.query(selectUser, (err, result) => {
             if (err) {
                 console.error('Error en la consulta a la base de datos:', err);
-                return res.status(500).render('loginRes', { error: 'Error en el servidor', classError: 'error' });
+                return res.status(500).send('Error en el servidor');
             }
 
             if (result.length === 0) {
                 console.log("Usuario no encontrado");
-                return res.render('loginRes', { error: 'Usuario no encontrado', classError: 'error' });
+                return res.status(500).send('Usuario no encontrado');
             }
 
             const user = result[0];
@@ -195,6 +163,42 @@ routerUser.get('/user/:id', (req, res) => {
         });
     });
 });
+
+/* RUTA PARA MODFICAR DATOS DE USUARIO */
+routerUser.get('/modificarDatos/:id', (req, res) => {
+    const userId = req.params.id;
+
+    buscarCitasUsuario(userId, (err, citasResult) => {
+        if (err) {
+            console.error('Error al buscar las citas del usuario:', err);
+            return res.status(500).render('loginRes', { error: 'Error en el servidor', classError: 'error' });
+        }
+        if (err) {
+            console.error('Error al buscar las citas del usuario:', err);
+            return res.status(500).send('Error en el servidor');
+        }
+
+        const selectUser = `SELECT * FROM residentes_aire WHERE id_residente = ${userId}`;
+        connection.query(selectUser, (err, result) => {
+            if (err) {
+                console.error('Error en la consulta a la base de datos:', err);
+                return res.status(500).send('Error en el servidor');
+            }
+
+            if (result.length === 0) {
+                console.log("Usuario no encontrado");
+                return res.status(500).send('Usuario no encontrado');
+            }
+
+            const user = result[0];
+            console.log("Usuario encontrado:", user);
+
+            res.render('modiDates', { user, span: user.nombre_res, button: 'Mensajes', mensaje: user.alerta, citas: citasResult || [] });
+        });
+    })
+    
+})
+
 
 //Mostrar calendario citas
 
