@@ -1,0 +1,74 @@
+<div class="logo">
+    <img class="mundo" src="/img/travelling_2060521.png" alt="logo avion sobre globo terrestre">
+    <h1>SmartDate</h1>
+</div>
+<button id="abrir" class="abrir-menu"><img src="/img/round-account-button-with-user-inside_icon-icons.com_72596.svg"
+        alt=""><span>
+        <%= span %>
+    </span></button>
+<nav class="nav" id="nav">
+    <button id="cerrar" class="cerrar-menu"><i class="bi bi-x-lg"></i></button>
+    <ul class="nav-list">
+        <li><button onclick="window.modal1.showModal();">
+                <%= button %>
+            </button></li>
+        <!-- <li><a href="#">hola</a></li> -->
+    </ul>
+</nav>
+
+<dialog id="modal1">
+    <div class="cuerpo-msg">
+        <div class="message">
+            <h2>Tus mensajes</h2>
+            <p>
+                <!-- si no existe alerta -->
+                <% if (!mensaje) { %>
+                    No tienes ningún mensaje
+                    <% } else { %>
+                        <%= mensaje %>
+                            <% } %>
+            </p>
+
+            <button class="cita" onclick="window.modal2.showModal();">Propuesta de cita</button>
+            <dialog id="modal2">
+                <div class="cuerpo-msg">
+                    <div class="message">
+                        <% if (citas && citas.length> 0) { %>
+                            <h2>Reservas</h2>
+                            <div class="adevertencias">
+                                <h3>¡IMPORTANTE!</h3>
+                                <p>Dale a confirmar para que la cita se agende correctamente.</p>
+                                <p>Si rechazas la cita no podremos garantizar una fecha que se adapte a la fecha de
+                                    caducidad de tu documento.</p>
+                            </div>
+                            <ul>
+                                <% citas.forEach(cita=> { %>
+                                    <li>
+                                        <p class="hora-cita">Renovación <%= cita.tipo_documento %> <br> en día y hora:
+                                                <%= new Date(cita.fecha_cita_res).toLocaleString('es-ES', {
+                                                    dateStyle: 'short' , timeStyle: 'short' }) %>
+                                        </p>
+                                        <form class="cita-auto" action="/aceptarCita/<%= cita.id_cita_res %>" method="POST">
+                                            <input type="hidden" name="user_id" value="<%= user.id_residente %>">
+                                            <button type="submit">Aceptar</button>
+                                        </form>
+                                        <form class="cita-auto" action="/rechazarCita/<%= cita.id_cita_res %>" method="POST">
+                                            <input type="hidden" name="user_id" value="<%= user.id_residente %>">
+                                            <button type="submit">Rechazar</button>
+                                        </form>
+                                    </li>
+                                    <% }); %>
+                            </ul>
+                            <% } else { %>
+                                <p>No tienes citas programadas.</p>
+                                <% } %>
+                    </div>
+                    <button class="cerrar-d" onclick="window.modal2.close();">Cerrar</button>
+                </div>
+            </dialog>
+        </div>
+        <div class="btn"><button class="cerrar-d" onclick="window.modal1.close();">Cerrar</button></div>
+
+
+    </div>
+</dialog>

@@ -1,0 +1,95 @@
+main {
+    align-self: center;
+    width: 80%;
+}
+
+.log {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.log a {
+    text-decoration: none;
+    background-color: rgb(110, 110, 110);
+    color: white;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.log a:hover {
+    background-color: rgb(65, 65, 65);
+}
+
+h2 {
+    text-align: center;
+}
+
+section {
+    width: 70vw;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th,
+td {
+    width: 50%;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #dddddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+th {
+    background-color: #363636;
+    color: white;
+}
+
+.actualizar {
+    text-align: center;
+    margin-bottom: 1.3rem;
+}
+
+.actualizar p {
+    margin: 1.5rem 0;
+}
+
+.actualizar a {
+    text-decoration: none;
+    color: white;
+    background-color: #363636;
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+
+
+
+a.volver {
+    align-items: center;
+    padding: .5rem;
+    color: rgb(83, 83, 83);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 400px) {
+    section {
+        width: 90vw;
+    }
+}
