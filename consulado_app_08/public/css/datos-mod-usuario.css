@@ -92,64 +92,18 @@ fieldset button{
     cursor: pointer;
 }
 
-/**********File Inputs**********/
-.container-input {
-    width: 100%;
-    text-align: center;
-    margin: 0 auto; 
-    margin-bottom: 20px;
+input::file-selector-button{
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(86, 86, 86);
+    color: white;
+    margin-right: 1.5rem;
 }
 
-.inputfile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
+input::file-selector-button:hover{
+    background-color: rgb(113, 113, 113);
 }
-
-.inputfile + label {
-    width: 100%;
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-overflow: ellipsis;
-    margin-top: 1rem;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    padding: 0.625rem 1.25rem;
-    border-radius: 5px;
-}
-
-.inputfile + label svg {
-    width: 1em;
-    height: 1em;
-    vertical-align: middle;
-    fill: currentColor;
-    margin-top: -0.25em;
-    margin-right: 0.25em;
-}
-
-.iborrainputfile {
-	font-size:1.3rem; 
-	font-weight:normal;
-	font-family: 'Lato';
-}
-
-/* style 1 */
-
-.inputfile-1 + label {
-    color: #fff;
-    background-color: #515151;
-}
-
-.inputfile-1:focus + label,
-.inputfile-1.has-focus + label,
-.inputfile-1 + label:hover {
-    background-color: #7b7b7b;
-}
-
 
 a.volver {
     align-items: center;

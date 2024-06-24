@@ -202,7 +202,7 @@ routerUser.get('/user', verifyToken, (req, res) => {
     });
 });
 
-/* RUTA PARA MODFICAR DATOS DE USUARIO */
+/* RUTA PARA PÁGINA DE MODFICAR DATOS DE USUARIO */
 routerUser.get('/modificarDatos', verifyToken, (req, res) => {
     const userId = req.userId;
 
@@ -229,13 +229,31 @@ routerUser.get('/modificarDatos', verifyToken, (req, res) => {
             }
 
             const user = result[0];
-            console.log("Usuario encontrado:", user);
+            //console.log("Usuario encontrado:", user);
 
             res.render('modiDates', { user, span: user.nombre_res, button: 'Mensajes', mensaje: user.alerta, citas: citasResult || [] });
         });
     })
     
 });
+
+/* MODIFICAR N.TELÉFONO USUARIO */
+
+routerUser.post('/modificarTelefono', verifyToken, (req, res) => {
+    const userId = req.userId;
+    const telefono = req.body.tel;
+    const updateTel = `UPDATE residentes_aire SET telefono_res = '${telefono}' WHERE id_residente = ${userId}`;
+    connection.query(updateTel, (err, result) => {
+        if (err) {
+            console.error('Error al modificar el teléfono del usuario:', err);
+            return res.status(500).send('Error en el servidor');
+        }
+        console.log('Teléfono modificado correctamente');
+        res.redirect(`/modificarDatos`);
+    })
+    
+})
+
 
 /* PETICIÓN MODIFICAR DIRECCIÓN USUARIO */
 
@@ -256,10 +274,6 @@ routerUser.post('/modificandoDatos', verifyToken, upload.single('file'), (req, r
         const filePath = file.path;
         //basename es un metodo de path que nos devuelve solo el ultimo componente de la ruta, en este caso el nombre del archivo
         const fileRef = path.basename(filePath);
-
-        //Leer el contenido del archivo antes de subirlo a la base de datos
-        //Posteriores verificaciones
-        /* const archivoSubido = fs.readFileSync(filePath); */
 
         //Insertar datos en la tabla
         const insertPeticion = `INSERT INTO peticion_modifica (id_residente, ref_file) VALUES (?,?)`;
