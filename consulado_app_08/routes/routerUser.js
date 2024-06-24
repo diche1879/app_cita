@@ -3,30 +3,17 @@
 //Importar modulos
 const express = require('express');
 const bcryptjs = require('bcryptjs');
-//Requerir el fichero de conexión a base de datos situado en la carpeta data
 const jwt = require('jsonwebtoken');
+//Requerir el fichero de conexión a base de datos situado en la carpeta data
 const connection = require('../data/db.js');
+const fs = require('node:fs');
+const {upload} = require('../functions/multerPadron');
 const path = require('path');
 
 //Inicializar routerUser
 const routerUser = express.Router();
 
-
-
 /* FUNCIÓN PARA VERIFICAR EL TOKEN */
-/* function verifyToken(req, res, next) {
-    const token = req.cookies.jwt;
-    if (!token) {
-        return res.status(403).render('loginRes', { error: 'Login no efectuado correctamente', classError: '', span: 'perfil', button: '', mensaje: '', citas: ''})
-    };
-    try{
-        const decoded = jwt.verify(token, process.env.JWT_SECRETO);
-        req.userId = decoded.id;
-        next();
-    }catch{
-        return res.status(403).render('loginRes', { error: 'Login no efectuado correctamente', classError: '', span: 'perfil', button: '', mensaje: '', citas: ''})
-    };
-}; */
 function verifyToken(req, res, next) {
     const token = req.cookies.jwt;
 
@@ -55,7 +42,7 @@ function buscarCitasUsuario(userId, callback) {
 
         callback(null, citasResult);
     });
-}
+};
 
 /* RUTA PRINCIAL */
 routerUser.get('/', (req, res) => {
@@ -248,7 +235,48 @@ routerUser.get('/modificarDatos', verifyToken, (req, res) => {
         });
     })
     
-})
+});
+
+/* PETICIÓN MODIFICAR DIRECCIÓN USUARIO */
+
+routerUser.post('/modificandoDatos', verifyToken, upload.single('file'), (req, res) => {
+    //recupero el id del token
+    const userId = req.userId;
+    //recuperar el file desde upload
+    const file = req.file;
+    console.log('Archivo subido:', file);
+
+    if(!file){
+        console.error('No se ha subido ningún archivo');
+        return res.status(400).send('No se ha subido ningún archivo o el tipo de archivo no es valido');
+    }
+
+    try {
+        //La ruta completa, está configurada por Multer
+        const filePath = file.path;
+        //basename es un metodo de path que nos devuelve solo el ultimo componente de la ruta, en este caso el nombre del archivo
+        const fileRef = path.basename(filePath);
+
+        //Leer el contenido del archivo antes de subirlo a la base de datos
+        //Posteriores verificaciones
+        /* const archivoSubido = fs.readFileSync(filePath); */
+
+        //Insertar datos en la tabla
+        const insertPeticion = `INSERT INTO peticion_modifica (id_residente, ref_file) VALUES (?,?)`;
+        connection.query(insertPeticion, [userId, fileRef], (err, result) => {
+            if (err) {
+                console.error('Error enviar la petición a la base de datos:', err);
+                return res.status(500).send('Error enviar la petición a la base de datos');
+            }
+
+            /* res.send('Petición enviada correctamente. Si todo es correcto sus datos se actualizarán en el plazo maximo de 15 días laborables (Lun-Vie') */
+            res.redirect('/modificarDatos');
+        })
+    } catch (error) {
+        console.error('Error al procesar el archivo', error);
+        return res.status(500).send('Error al procesar el archivo');
+    }
+});
 
 
 //Mostrar calendario citas

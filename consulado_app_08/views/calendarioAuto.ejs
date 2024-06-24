@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('./parcials/head') %>
+    <link rel="stylesheet" href="/css/calendario-certificaciones.css">
+</head>
+
+<body>
+    <header>
+        <%- include('./parcials/header') %>
+    </header>
+
+    <main>
+        <div class="log">
+            <h2>Bienvenido <%= user.nombre_res %> <%= user.apellido_res %></h2>
+            <a href="/logout" class="logout">Cerrar Sessión</a>
+        </div>
+        <h2>Calendario Citas</h2>
+        <div class="cale">
+            <section>
+                <h2>Días disponibles</h2>
+                <p>Elige el día entre los de la lista:</p>
+                <form method="post" id="inputContainer"></form>
+            </section>
+            <section>
+                <h2>Horarios disponibles</h2>
+                <p>Elige el día entre los de la lista:</p>
+                <form class="horas" method="post" id="hourInputsContainer"></form>
+            </section>
+        </div>
+        <a href="#" class="volver"><i class="bi bi-arrow-left-circle-fill"></i>Volver</a>
+    </main>
+    <%- include('./parcials/footer') %>
+    <script src="/js/app_dia_hora.js"></script>
+</body>
+
+</html>

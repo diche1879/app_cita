@@ -1,0 +1,85 @@
+main{
+    text-align: center;
+    padding-top: 3rem;
+}
+
+a.getform{
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(44, 44, 44);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
+
+a.getform:hover{
+    background-color: rgb(99, 99, 99);
+}
+
+.table-container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+/* Estilos básicos para la tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    display: block;
+}
+
+/* thead, tbody{
+    display: table;
+    width: 100%;
+} */
+
+.datatable-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Estilos para las celdas y cabeceras */
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.datatable-sorter{
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+}
+
+/* Estilos para las filas */
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tr:hover {
+    background-color: #ddd;
+}
+
+/* Estilos para las cabeceras */
+.table th {
+    background-color: #d6d6d6;
+    color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* Añadir scroll horizontal si es necesario */
+.table-container {
+    overflow-x: auto;
+}
+
+
+div.datable-top{
+    display: flex;
+}

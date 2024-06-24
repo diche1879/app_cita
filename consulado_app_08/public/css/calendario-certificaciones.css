@@ -1,0 +1,93 @@
+
+
+main{
+    align-self: center;
+    width: 80%;
+}
+
+.log{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.log a{
+    text-decoration: none;
+    background-color: rgb(110, 110, 110);
+    color: white;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.log a:hover{
+    background-color: rgb(65, 65, 65);
+}
+
+div.cale{
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 1rem;
+}
+
+h2{
+    margin: .5rem 0;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+p{
+    font-size: 1.2rem;
+}
+
+section{
+    width: 50%;
+    margin-top: 1rem;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    margin-top: .5rem;
+    padding: .5rem;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: rgba(184, 184, 255, 0.189);
+    cursor: pointer;
+}
+
+
+form.horas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+form.horas input{
+    width: 30%;
+}
+
+a.volver{
+    align-items: center;
+    padding: .5rem;
+    color: rgb(83, 83, 83);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 709px) {
+    div.cale{
+        flex-direction: column;
+    }
+    section{
+width: 100%;
+    }
+}

@@ -1,0 +1,53 @@
+
+
+.bienvenida {
+    margin: .8rem;
+    text-align: center;
+}
+
+.img{
+    width: 100%;
+    height: 250px;
+    background-color: rgb(143, 178, 212);
+}
+
+.container{
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container div{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+h4{
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.boton{
+
+    width: 100%;
+    text-decoration: none;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    padding: .8rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 550px){
+    .container{
+        flex-direction: column;
+    }
+    
+    .container div{
+        width: 100%;
+    }
+}
