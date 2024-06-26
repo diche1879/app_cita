@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 
 const cron = require('node-cron');
 const connection = require('./data/db.js');
+/* const { verificaFechas } = require('./functions/verificaFechas'); */
 const verificaFechas = require('./functions/verificaFechas');
 
 //Ruta administradores

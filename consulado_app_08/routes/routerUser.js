@@ -154,17 +154,19 @@ routerUser.post('/aceptarCita/:id', verifyToken, (req, res) => {
 
 /* RUTA RECHAZAR CITA AUTOMATIZADA */
 routerUser.post('/rechazarCita/:id', verifyToken, (req, res) => {
+    //recuperar el id de la cita desde el parametro de la url y el id de usuario desde el formulario
     const idCita = req.params.id;
+    //const userId = req.body.user_id;
     const userId = req.userId
 
-    // Eliminar la cita de la tabla cita_dni_res
-    connection.query('DELETE FROM cita_dni_res WHERE id_cita_res = ?', [idCita], (err, result) => {
+    // Actualizar el estado de la cita a "rechazada"
+    connection.query('UPDATE cita_dni_res SET estado_cita = ? WHERE id_cita_res = ?', ['rechazada', idCita], (err, result) => {
         if (err) {
-            console.error('Error al eliminar la cita de la base de datos:', err);
+            console.error('Error al actualizar el estado de la cita:', err);
             return res.status(500).send('Error en el servidor');
         }
 
-        // Redirigir a mainUserAire después de rechazar la cita
+        // Redirigir a mainUserAire después de aceptar la cita
         res.redirect(`/userPage`);
     });
 });
