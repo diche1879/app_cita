@@ -12,6 +12,7 @@
     </header>
 
     <main>
+        <h2 id="credencial">Bienvenido <%= user.nombre_res %> <%= user.apellido_res %></h2>
         <div class="log">
             <h2>Bienvenido <%= user.nombre_res %> <%= user.apellido_res %></h2>
             <a href="/logout" class="logout">Cerrar Sessión</a>
@@ -21,12 +22,17 @@
             <section>
                 <h2>Días disponibles</h2>
                 <p>Elige el día entre los de la lista:</p>
-                <form method="post" id="inputContainer"></form>
+                <form id="inputContainer">
+                </form>
             </section>
             <section>
                 <h2>Horarios disponibles</h2>
                 <p>Elige el día entre los de la lista:</p>
-                <form class="horas" method="post" id="hourInputsContainer"></form>
+                <form id="hourForm" action="/reserve_cita" method="post">
+                    <div id="inputContainer"></div>
+                 <div id="hourInputsContainer"></div>
+                <input id="user" type="hidden" name="" value="<%= user.id_residente%>">
+                </form>
             </section>
         </div>
         <a href="/userPage" class="volver"><i class="bi bi-arrow-left-circle-fill"></i>Volver</a>

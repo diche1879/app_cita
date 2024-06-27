@@ -60,7 +60,7 @@ routerUser.post('/loginResAuth', (req, res) => {
     const password = req.body.password;
 
     if (!email || !password) {
-        return res.render('loginRes', { error: 'Todos los campos son obligatorios', classError: 'error', mensaje: '', citas: '' });
+        return res.render('loginRes', { error: 'Todos los campos son obligatorios', span: 'perfil', button: '', classError: 'error', mensaje: '', citas: '' });
     }
 
     connection.query('SELECT * FROM residentes_aire WHERE email_res = ?', [email], async (err, result) => {
