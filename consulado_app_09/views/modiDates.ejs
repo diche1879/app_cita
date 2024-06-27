@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('./parcials/head') %>
+        <link rel="stylesheet" href="/css/datos-mod-usuario.css">
+</head>
+
+<body>
+    <header>
+        <%- include('./parcials/header') %>
+    </header>
+
+    <main>
+        <div class="log">
+            <h2>Bienvenido <%= user.nombre_res %>
+                    <%= user.apellido_res %>
+            </h2>
+            <a href="/logout" class="logout">Cerrar Sessión</a>
+        </div>
+        <h2>Modificar Datos</h2>
+        <section>
+            <div class="parrafo">
+                <p>Actualiza aquí tu número de teléfono.</p>
+            </div>
+            <form action="/modificarTelefono" method="post">
+                <fieldset>
+                    <legend>Modificar número teléfonico</legend>
+                    <div>
+                        <label for="tel">Inserta tu número de teléfono</label>
+                        <input type="text" name="tel" id="tel" placeholder="<%= user.telefono_res %>">
+                    </div>
+                    <button type="submit">Modificar número</button>
+                </fieldset>
+            </form>
+            <div class="parrafo">
+                <p>Envía la solicituda para modificar tu dirección.</p>
+            </div>
+            <form action="/modificandoDatos" enctype="multipart/form-data" method="post">
+                <fieldset>
+                    <p>Para poder actualizar tu dirección deberás adjuntar una copia de tu padrón municipal actualizado.
+                    </p>
+                    <legend>Enviar solicitud para cambio de dirección</legend>
+                    <input class="archivo" type="file" name="file">
+                    <button type="submit">Enviar solicitud</button>
+                </fieldset>
+            </form>
+        </section>
+        <a href="/user" class="volver"><i class="bi bi-arrow-left-circle-fill"></i>Volver</a>
+    </main>
+
+    <%- include('./parcials/footer') %>
+</body>
+
+</html>
